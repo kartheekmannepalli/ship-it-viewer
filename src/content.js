@@ -46,7 +46,16 @@ function renderTable() {
         let itemData = {};
         keys.forEach((key, i, keyArray) => {
             if (item.hasOwnProperty(key)) {
-                itemData[key] = item[key];
+                if(key === "name") {
+                    const currentPage = window.location.href;
+                    //adding URL instead of simple text
+                    itemData[key] = `<a href="${currentPage}/${item[key]}">${item[key]}</a>`;
+                } else if(key === "smokeStatus") {
+                    //adding this to make filtering easier since there multiple boolean columns
+                    itemData[key] = "smoke:" + item[key];
+                } else {
+                    itemData[key] = item[key];
+                }
             } else {
                 itemData[key] = "";
             }
@@ -79,6 +88,8 @@ function renderTable() {
                 responsive: true,
                 data: dataArray,
                 columns: dataColumns,
+                pageLength: 50,
+                lengthMenu: [10, 20, 50, 100, 200, 500, 1000],
                 order: [[1, 'asc']]
             });
 
@@ -148,10 +159,8 @@ function tableHTML() {
 function buildBreadcumbs() {
     const hostPath = $(location).attr('protocol') + "//" + $(location).attr('host') + "/api/service";
     let path = $(location).attr('pathname');
-    console.log(hostPath);
     let content = `<b>Path: </b><a href=\"${hostPath}\">Services</a>`;
     path = path.replace('/api/service', '');
-    console.log(path);
     const paths = path.split('/');
     paths.forEach((crumb) => {
         if(crumb !== '') {
