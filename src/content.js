@@ -97,6 +97,8 @@ function renderTable() {
                 tr.addClass('shown');
             }
         });
+        //Adding breadcrumbs for easy navigation
+        $('#breadcrumbs').html(buildBreadcumbs());
     });
 }
 
@@ -110,12 +112,13 @@ function tableHTML() {
         "<html lang=\"en\">" +
         "<head>" +
         "    <meta charset=\"UTF-8\">" +
-        "    <title>JSON-As-Table</title>" +
+        "    <title>ShipIt Viewer</title>" +
         "<link href=\"https://fonts.googleapis.com/css2?family=Lateef&family=Roboto&display=swap\" rel=\"stylesheet\">" +
         "</head>" +
         "<body>" +
         "<div id='content-div' class='acs-content-div'>" +
         "<div class='acs-logo-bg'><div class='acs-logo'></div></div>" +
+        "<div id='breadcrumbs'></div>" +
         "<div id='table-div' class='acs-table-div'>" +
         "<table id=\"table_id\" class=\"display\">" +
         "</table>" +
@@ -130,15 +133,33 @@ function tableHTML() {
         "<br/>" +
         "<hr/>" +
         "<div class=\"acs-credits\">\n" +
-        "    <strong>Developed by:</strong>&nbsp;<a href=\"http://www.actigence.com\">Actigence Solutions</a><br/>" +
-        "    <strong>Source\n" +
-        "        Code:</strong>&nbsp;<a href=\"https://github.com/Actigence/json-to-table-chrome-extension\">Github</a><br/>" +
-        "    <strong>Report Issues:</strong>&nbsp;<a href=\"https://github.com/Actigence/json-to-table-chrome-extension/issues\">Github Issues</a><br/>\n" +
+        "    <strong>Forked \n" +
+        "        From:</strong>&nbsp;<a href=\"https://github.com/Actigence/json-to-table-chrome-extension\">Github</a><br/>" +
         "</div>" +
         "<hr/>" +
         "</div>" +
         "</body>" +
         "</html>"
+}
+
+/**
+    Builds the breadcrumbs for the page for easy navigation.
+ */
+function buildBreadcumbs() {
+    const hostPath = $(location).attr('protocol') + "//" + $(location).attr('host') + "/api/service";
+    let path = $(location).attr('pathname');
+    console.log(hostPath);
+    let content = `<b>Path: </b><a href=\"${hostPath}\">Services</a>`;
+    path = path.replace('/api/service', '');
+    console.log(path);
+    const paths = path.split('/');
+    paths.forEach((crumb) => {
+        if(crumb !== '') {
+            content += " / ";
+            content += `<a href=\"${hostPath}/${crumb}\">${crumb}</a>`;
+        }
+    });
+    return content;
 }
 
 /**

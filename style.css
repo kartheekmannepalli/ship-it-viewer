@@ -20,14 +20,14 @@ tr.shown td.details-control {
 }
 
 .acs-logo-bg {
-    background : url('chrome-extension://__MSG_@@extension_id__/images/logo_bg.png');
-    height     : 75px;
-    margin     : -10px -10px 40px;
+    background-color: #080957;
+    height     : 60px;
+    margin     : -10px -10px 20px;
 }
 
 .acs-logo {
     background : url('chrome-extension://__MSG_@@extension_id__/images/logo_flat.png') no-repeat left;
-    height     : 75px;
+    height: 60px;
 }
 
 .acs-credits {
@@ -49,7 +49,7 @@ pre {
 
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
-    background-color: #298784;
+    background-color: #080957;
     color: white;
     cursor: pointer;
     padding: 8px;
@@ -61,7 +61,7 @@ pre {
 }
 
 .active, .collapsible:hover {
-    background-color: #257b78;
+    background-color: #7477CD;
 }
 
 .content {
