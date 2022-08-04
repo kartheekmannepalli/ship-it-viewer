@@ -30,6 +30,16 @@ tr.shown td.details-control {
     height: 60px;
 }
 
+.green {
+    background : url('chrome-extension://__MSG_@@extension_id__/images/green.png') no-repeat left;
+    height: 25px;
+    width: 25px;
+}
+.red {
+    background : url('chrome-extension://__MSG_@@extension_id__/images/red.png') no-repeat left;
+    height: 25px;
+    width: 25px;
+}
 .acs-credits {
     color     : #585858;
     font-size : 0.8em;
@@ -41,6 +51,7 @@ td {
 
 th {
     font-size: 1.0em;
+    text-align: left;
 }
 
 pre {

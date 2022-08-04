@@ -52,7 +52,8 @@ function renderTable() {
                     itemData[key] = `<a href="${currentPage}/${item[key]}">${item[key]}</a>`;
                 } else if(key === "smokeStatus") {
                     //adding this to make filtering easier since there multiple boolean columns
-                    itemData[key] = "smoke:" + item[key];
+                    itemData[key] = item[key] === true ? `<div style="display:none;">green</div><div class="green"></div>`
+                        : `<div style="display:none;">red</div><div class="red"></div>`;
                 } else {
                     itemData[key] = item[key];
                 }

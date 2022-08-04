@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "ShipIt Viewer",
     "version": "1.0",
     "description": "*** View ShipIt JSON response as HTML table ***",
@@ -25,8 +25,11 @@
             ]
         }
     ],
-    "web_accessible_resources": [
-        "libs/DataTables-1.10.21/images/*",
-        "images/*"
-    ]
+    "web_accessible_resources": [{
+        "resources": ["libs/DataTables-1.10.21/images/*"],
+        "matches": ["<all_urls>"]
+    }, {
+        "resources": ["images/*"],
+        "matches": ["<all_urls>"]
+    }]
 }
